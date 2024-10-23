@@ -1,0 +1,10 @@
+1) destoy/remove named pipes
+2) fork and start up the FirmWare
+3) Make the Firmware_O named pipes connection as Read
+4) Make the Firmware_i named pipes connection as Write
+5) send over the PID over the pipes to the software //no responce expected
+6) create the structs/arrays needed for the software
+7) send I am ready packet to firmware then wait
+8) when get the reply then start up the key press loop
+
+

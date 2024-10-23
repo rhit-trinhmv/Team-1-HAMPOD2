@@ -1,0 +1,35 @@
+Name: test1
+Type: OnOff
+Default: 0
+
+Name: Test2
+Type: Numeric
+Default: 2
+MinValue: 0
+MaxValue: 4
+StepSize: 1
+
+Name: Test3
+Type: OnOffNumeric
+Default: 2
+MinValue: 0
+MaxValue: 4
+StepSize: 1
+
+Name: Test4
+Type: Selection
+Default: 0
+SelectionSize: 3
+SelectionSet: Test, String, output
+
+Name: Test5
+Type: Other
+Default: 1
+
+Name: HotKey
+Type: Other
+Default: 1
+
+Name: save
+Type: Other
+Default: 1

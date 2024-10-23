@@ -1,0 +1,35 @@
+public TestInputInterperatation(){
+    oldKey,holdKeySent,shiftState,holdWaitCount = [null,false,0,0];
+    var expectedStates = [null,false,0,0];
+    //testing
+    //B
+    //c shift 1
+    //d shift 2 hold
+    //a shift 1 hold
+    // shifting looping around
+    
+    output = interperateKeyPresses(null)
+    expectedStates = [null,false,0, 0, null]
+    assertEqual([oldKey,holdKeySent,shiftState,holdWaitCount, output] = expectedStates);
+    output = interperateKeyPresses('B')
+    expectedStates = ['B',false,0, 0, null]
+    assertEqual([oldKey,holdKeySent,shiftState,holdWaitCount, output] = expectedStates);
+    output = interperateKeyPresses(null)
+    expectedStates = [null,false,0, 0, 'B']
+    assertEqual([oldKey,holdKeySent,shiftState,holdWaitCount, output] = expectedStates);
+    output = interperateKeyPresses(null)
+    expectedStates = [null,false,0, 0, null]
+    assertEqual([oldKey,holdKeySent,shiftState,holdWaitCount, output] = expectedStates);
+    output = interperateKeyPresses('A')
+    expectedStates = ['A',false,0, 0, null]
+    assertEqual([oldKey,holdKeySent,shiftState,holdWaitCount, output] = expectedStates);
+    output = interperateKeyPresses(null)
+    expectedStates = [null,false,1, 0, null]
+    assertEqual([oldKey,holdKeySent,shiftState,holdWaitCount, output] = expectedStates);
+    output = interperateKeyPresses('C')
+    expectedStates = ['C',false,1, 0, null]
+    assertEqual([oldKey,holdKeySent,shiftState,holdWaitCount, output] = expectedStates);
+    output = interperateKeyPresses(null)
+    expectedStates = [null,false,0, 0, 'CS1']
+    assertEqual([oldKey,holdKeySent,shiftState,holdWaitCount, output] = expectedStates);
+}

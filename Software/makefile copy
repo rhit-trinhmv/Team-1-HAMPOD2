@@ -1,0 +1,59 @@
+CC = gcc
+CFLAGS = -Wall -g -lm
+LDFLAGS = -lpthread -lhamlib -lwiringPi
+
+
+Level0: Software.elf
+Level1: Software1.elf
+Level2: Software2.elf
+
+Software.elf: Startup.o
+	$(CC) $(CFLAGS) -o Software.elf Startup.o  $(LDFLAGS)
+Software1.elf: Startup1.o
+	$(CC) $(CFLAGS) -o Software1.elf Startup1.o  $(LDFLAGS)
+Software2.elf: Startup2.o
+	$(CC) $(CFLAGS) -o Software2.elf Startup2.o  $(LDFLAGS)
+
+
+Startup.o: Startup.c
+	$(CC) $(CFLAGS) -c Startup.c -o Startup.o  $(LDFLAGS)
+Startup1.o: Startup.c
+	$(CC) $(CFLAGS) -c -DOUTPUTLEVEL1 Startup.c -o Startup1.o  $(LDFLAGS)
+Startup2.o: Startup.c
+	$(CC) $(CFLAGS) -c -DOUTPUTLEVEL2 -DOUTPUTLEVEL1 Startup.c -o Startup2.o  $(LDFLAGS)
+Startup.c:
+	@echo "Missing firmware.c file. Repull the git repo"
+
+cleanWindows:
+	del /s *.o
+	del *.exe
+
+clean:
+	@rm -f /s *.o   # Remove object files
+	# @rm -f /s ../Firmware/*.o   # Remove object files
+	@rm -f *.exe  # Remove the executable (replace 'my_program' with the actual name)
+	@rm -f *.elf
+	@rm -f *.wav
+
+testing0: UnitTesting0.elf
+testing1: UnitTesting1.elf
+testing2: UnitTesting2.elf
+UnitTesting0.elf: UnitTesting0.o
+	$(CC) $(CFLAGS) -o UnitTesting0.elf UnitTesting0.o  $(LDFLAGS)
+UnitTesting1.elf: UnitTesting1.o
+	$(CC) $(CFLAGS) -o UnitTesting1.elf UnitTesting1.o  $(LDFLAGS)
+UnitTesting2.elf: UnitTesting2.o
+	$(CC) $(CFLAGS) -o UnitTesting2.elf UnitTesting2.o  $(LDFLAGS)
+
+
+UnitTesting0.o: UnitTesting.c
+	$(CC) $(CFLAGS) -DTESTING -c UnitTesting/UnitTesting.c -o UnitTesting0.o  $(LDFLAGS)
+UnitTesting1.o: UnitTesting.c
+	$(CC) $(CFLAGS) -DTESTING -DOUTPUTLEVEL1 -c UnitTesting/UnitTesting.c -o UnitTesting1.o  $(LDFLAGS)
+UnitTesting2.o: UnitTesting.c
+	$(CC) $(CFLAGS) -DTESTING -DOUTPUTLEVEL2 -DOUTPUTLEVEL1 -c UnitTesting/UnitTesting.c -o UnitTesting2.o  $(LDFLAGS)
+UnitTesting.c:
+	@echo "Missing firmware.c file. Repull the git repo"
+
+
+
