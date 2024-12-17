@@ -98,6 +98,7 @@ void sigsegv_handler(int signum) {
 }
 
 int main(){
+    sendSpeakerOutput("Audio Working");
     if(signal(SIGSEGV, sigsegv_handler) == SIG_ERR) {
         perror("signal");
         exit(1);
