@@ -1,7 +1,11 @@
 # Compiler flags
-CC = gcc
+CC = arm-linux-gnueabihf-gcc
 CFLAGS = -Wall -g -lm
-LDFLAGS = -lpthread -lhamlib -lwiringPi 
+CFLAGS += -I/opt/hamlib-arm/include
+CFLAGS += -I/opt/WiringNP-arm/include
+LDFLAGS = -lpthread -lhamlib
+LDFLAGS += -L/opt/hamlib-arm/lib -lhamlib
+LDFLAGS += -L/opt/WiringNP-arm/lib -Wl,-rpath,/opt/WiringNP-arm/lib -lwiringPi
 # Files
 HEADERS := $(wildcard Modes/*.h)
 LIB_SRCS := $(wildcard Modes/*.c)

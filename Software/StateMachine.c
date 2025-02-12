@@ -1,3 +1,4 @@
+#include "StateMachine.h"
 /* TODO list
 * 2) add a way to toggle if the letter keys are being used for standard input
 * 3) redue how loading up a mode works to properly use the toggles

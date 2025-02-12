@@ -1,3 +1,4 @@
+#include "FirmwareCommunication.h"
 pthread_t speakerThread;
 bool running = true;
 char* audioFolderPath = "../Firmware/pregen_audio/";

@@ -1,3 +1,4 @@
+#include "RigListCreator.h"
 // Might move to GeneralFunctions later. 
 void replaceSlashWithDash(char *str, size_t size) {
     while (*str && size > 1) {

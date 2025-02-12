@@ -1,3 +1,4 @@
+#include "ModeRouting.h"
 HashMap* ModeHashMap;
 Mode** keyBinds;
 char* libraryName = "./libModes.so";
