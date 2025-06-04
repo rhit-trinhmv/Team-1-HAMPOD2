@@ -30,12 +30,6 @@
 #define C3 12 //Pin GPIOC0
 #define C4 3 //Pin GPIOA3
 
-//new Pins
-#define R5 5 // GPIOG9
-#define RS 15 //Pin GPIOG6
-#define CS1 16 // Pin GPIOG7
-#define CS2 4 // GPIOG8 
-
 #define KEYPAD_THREAD_COLOR "\033[0;97mKeypad - Main: "
 #define KEYPAD_IO_THREAD_COLOR "\033[0;96mKeypad - IO: "
 

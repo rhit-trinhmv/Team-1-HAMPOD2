@@ -181,11 +181,15 @@ void firmwareStartAudio(){
 
 void* firmwarePlayAudio(void* text){
     char* incomingText = (char*) text;
-    char* buffer = malloc(strlen(incomingText)+100);
+    char* buffer = malloc(sizeof(char)*(2*strlen(incomingText)+100+1));
     char audio_type_byte = incomingText[0];
     char* remaining_string = incomingText + 1;
     int system_result;
 	char default_directory[0x100];
+    printf("I am here before trying to print incomingText\n");
+    printf("DEBUG: incomingText = '%s'\n", incomingText);
+    printf("DEBUG: audio_type_byte = '%c'\n", audio_type_byte);
+    printf("DEBUG: remaining_string = '%s'\n", remaining_string);
     pthread_mutex_lock(&audio_lock);
 	getcwd(default_directory, sizeof(default_directory));
         if(audio_type_byte == 'd') {
@@ -204,9 +208,10 @@ void* firmwarePlayAudio(void* text){
             system(buffer);
             chdir(default_directory);
         } else if(audio_type_byte == 'p') {
-            strcpy(buffer, "aplay '");
-            strcat(remaining_string, ".wav'");
-            strcat(buffer, remaining_string);
+            //strcpy(buffer, "aplay '");
+            //strcat(buffer, remaining_string);
+            //strcat(buffer, ".wav'");
+            sprintf(buffer, "aplay '%s.wav'", remaining_string);
             AUDIO_PRINTF("Now playing %s with aplay\n", remaining_string);
             system_result = system(buffer);
         } else {
@@ -215,5 +220,6 @@ void* firmwarePlayAudio(void* text){
         }
         pthread_mutex_unlock(&audio_lock);
         free(buffer);
+        free(incomingText);
         return system_result;
 }
