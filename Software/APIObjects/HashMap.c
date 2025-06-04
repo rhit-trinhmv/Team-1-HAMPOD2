@@ -1,3 +1,4 @@
+#include "HashMap.h"
 HashMap* createHashMap( int (*hashFunc)(void*), bool (*comparFunc)(void*,void*)){
     HashMap* map = malloc(sizeof(HashMap));
     map->list = calloc(8,sizeof(void*));
