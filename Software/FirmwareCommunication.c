@@ -1,4 +1,3 @@
-#include "FirmwareCommunication.h"
 pthread_t speakerThread;
 bool running = true;
 char* audioFolderPath = "../Firmware/pregen_audio/";
@@ -26,7 +25,14 @@ void firmwareCommunicationStartup(){
 */
 char* sendSpeakerOutput(char* textIn){
     char* text = applyDictionary(textIn);
-    //
+    if (!text) {
+        printf("applyDictionary returned NULL!\n");
+        return textIn;
+    }
+    printf("DEBUG: text after applyDictionary is '%s'\n", text);
+    size_t testLen = strlen(text);
+    printf("DEBUG: text length is %zu\n", testLen);
+
     if(SIMULATEOUTPUT){
         PRINTFLEVEL1("TESTING SPEAKER OUTPUT: %s\n", text);
         bool hasAudioFile = getHashMap(audioHashMap, text) != NULL;
@@ -42,18 +48,32 @@ char* sendSpeakerOutput(char* textIn){
     //TODO add the stuff for checking if it exits
     bool hasAudioFile = getHashMap(audioHashMap, text) != NULL;
     PRINTFLEVEL2("SOFTWARE: Gotted %i from the audioHashmap\n",hasAudioFile);
-    char* outputText = malloc((strlen(text)+100)*sizeof(char));
+    char* audioPath = NULL;
+    char* outputText = NULL;
+    printf("DEBUG: I made it here after defining audioPath and ouputText\n");
+    if(hasAudioFile) {
+        audioPath = getHashMap(audioHashMap, text);
+        size_t pathLen = (audioPath) ? strlen(audioPath) : 0;
+        printf("DEBUG: This is pathlen:%d and this is audioPath: %s\n",pathLen,audioPath);
+        outputText = malloc((pathLen + 2)*sizeof(char));
+        printf("DEBUG: This is right after mallocin outputText\n");
+    } else {
+         outputText = malloc((strlen(text)+100+1)*sizeof(char));
+    }
     PRINTFLEVEL2("SOFTWARE: Malloced a new array\n");
     if(hasAudioFile){
+        printf("DEBUG: about to strcopy for type p message\n");
         strcpy(outputText,"p");
-        strcat(outputText,getHashMap(audioHashMap, text));
+        printf("DEBUG: made it past strcpy(outputText, p)\n");
+        strcat(outputText,audioPath);
+        printf("DEBUG: Made it to end of this if\n");
     }else if(shouldCreateAudioFile(text)){
          PRINTFLEVEL2("SOFTWARE:Creating new audio hashmap entrie for this\n");
         strcpy(outputText,"s");
         strcat(outputText,text);
         //TODO add it to the hashmap
-        char* nameAndPath = malloc(sizeof(char)*(strlen(text)+strlen(audioFolderPath)));
-        char* nameOnly = malloc(sizeof(char)*(strlen(text)+10));
+        char* nameAndPath = malloc(sizeof(char)*(strlen(text)+strlen(audioFolderPath)+1));
+        char* nameOnly = malloc(sizeof(char)*(strlen(text)+10+1));
         strcpy(nameAndPath,audioFolderPath);
         strcpy(nameOnly,text);
         strcat(nameAndPath,nameOnly);
@@ -105,18 +125,28 @@ char* sendSpeakerOutputWithConditions(char* textIn, bool filterBypass, bool verb
     //TODO add the stuff for checking if it exits
     bool hasAudioFile = getHashMap(audioHashMap, text) != NULL;
     PRINTFLEVEL2("SOFTWARE: Gotted %i from the audioHashmap\n",hasAudioFile);
-    char* outputText = malloc((strlen(text)+100)*sizeof(char));
+    char* audioPath = NULL;
+    char* outputText = NULL;
+    if (hasAudioFile) {
+        audioPath = getHashMap(audioHashMap, text);
+        printf("DEBUG: audioPath: %s\n", audioPath);
+        size_t pathLen = (audioPath) ? strlen(audioPath) : 0;
+        size_t totalNeeded = pathLen + 2;
+        outputText = malloc((totalNeeded+50)*sizeof(char));
+    } else {
+        outputText = malloc((strlen(text)+100+1)*sizeof(char));
+    }
     PRINTFLEVEL2("SOFTWARE: Malloced a new array\n");
     if(hasAudioFile){
         strcpy(outputText,"p");
-        strcat(outputText,getHashMap(audioHashMap, text));
+        strcat(outputText,audioPath);
     }else if(shouldCreateAudioFile(text) || filterBypass){
          PRINTFLEVEL2("SOFTWARE:Creating new audio hashmap entrie for this\n");
         strcpy(outputText,"s");
         strcat(outputText,text);
         //TODO add it to the hashmap
-        char* nameAndPath = malloc(sizeof(char)*(strlen(text)+strlen(audioFolderPath)));
-        char* nameOnly = malloc(sizeof(char)*(strlen(text)+10));
+        char* nameAndPath = malloc(sizeof(char)*(strlen(text)+strlen(audioFolderPath)+1));
+        char* nameOnly = malloc(sizeof(char)*(strlen(text)+10+1));
         strcpy(nameAndPath,audioFolderPath);
         strcpy(nameOnly,text);
         strcat(nameAndPath,nameOnly);
@@ -167,8 +197,8 @@ void setupAudioHashMap(){
         printf("%s\n", de->d_name);
         //TODO see if this will grab also the .wav part and if it grabs the path.
         if(strcmp(de->d_name, ".") != 0 && strcmp(de->d_name, "..") != 0){   
-            char* nameAndPath = malloc(sizeof(char)*(strlen(de->d_name)+strlen(softwarePath)));
-            char* nameOnly = malloc(sizeof(char)*(strlen(de->d_name)+10));
+            char* nameAndPath = malloc(sizeof(char)*(strlen(de->d_name)+strlen(softwarePath)+1));
+            char* nameOnly = malloc(sizeof(char)*(strlen(de->d_name)+10+1));
             strcpy(nameAndPath, softwarePath);
             strcpy(nameOnly,de->d_name);
             nameOnly[strlen(de->d_name)-4] = '\0'; //add back in the null
@@ -236,13 +266,15 @@ void setupDictinaryHashMap(){
     char* start;
     PRINTFLEVEL1("Got the dictionay, starting to load up the dictionary\n");
     for(int i = 0; strcmp(dictinary[i], "END OF ARRAY") != 0;i++){
-        start = malloc(sizeof(char)*40);
+        size_t needed = strlen(dictinary[i]) + 1;
+        start = malloc(needed);
         strcpy(start,dictinary[i]);
         remain = start;
         remain = strchr(remain, ' ');
         remain[0] = '\0';
         remain = remain+1;
-        insertHashMap(stringDictinary,(void*) remain, (void*) start);
+        char* remainCopy = strdup(remain);
+        insertHashMap(stringDictinary,(void*) remainCopy, (void*) start);
     }
     freeFileArray(dictinary);
     // free(remain); removing this temporarily
@@ -334,6 +366,20 @@ void insertSpaces(char *str) {
             len += 2;
         }
     }
+//    int i = 0;
+  //  while (str[i] != '\0') {
+    //    if (is_digit(str[i])) {
+      //      int len = strlen(str);
+        //    for (int j = len; j>=i; j--) {
+          //          str[j+2] = str[j];
+            // }
+            //str[i] = ' ';
+            //str[i+2] = ' ';
+            //i += 3;
+        //} else {
+          //  i++;
+        //}
+   // }
 }
 
 char* applyDictionary(char* s){
@@ -364,7 +410,10 @@ char* applyDictionary(char* s){
     //apply the numeric updates to this
     insertSpaces(stringBuild);
     PRINTFLEVEL1("finished creation and got %s\n",stringBuild);
-    stringBuild[strlen(stringBuild)-1] = '\0';
+    size_t finalLen = strlen(stringBuild);
+    if (finalLen > 0) {
+        stringBuild[strlen(stringBuild)-1] = '\0';
+    }
     return stringBuild;
 }
 

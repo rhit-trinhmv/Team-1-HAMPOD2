@@ -1,4 +1,3 @@
-#include "ModeRouting.h"
 HashMap* ModeHashMap;
 Mode** keyBinds;
 char* libraryName = "./libModes.so";
@@ -16,7 +15,7 @@ void modeRoutingStart(){
     //3) run the dynamic grab and save them to the hashmap
     int i = 0;
     while(strcmp(loadFunctionNames[i],"ENDOFNAMES") != 0){
-        PRINTFLEVEL1("Adding mode with load function %s\n",loadFunctionNames[i]);
+        printf("Adding mode with load function %s\n",loadFunctionNames[i]);
         tempMode = dynamicalyLoadInModeByName(loadFunctionNames[i]);
         insertHashMap(ModeHashMap, tempMode, tempMode->modeDetails->modeName);
         free(loadFunctionNames[i]);
@@ -34,6 +33,18 @@ void modeRoutingStart(){
 }
 
 Mode* getModeByName(char* name){
+    printf("About to getHashMap\n");
+    Mode *someMode = getHashMap(ModeHashMap,name);
+    if (someMode == NULL) {
+        printf("getModeByName(\"frequency mode\") returned NULL!\n");
+    } else {
+        printf("getModeByName(\"frequency mode\" returned Mode pointer %p\n", (void*)someMode);
+        if(someMode->modeInput == NULL) {
+            printf("modeInput is NULL!\n");
+        } else {
+            printf("modeInput is at %p\n", (void*)someMode->modeInput);
+        }
+    }
     return (Mode*) getHashMap(ModeHashMap, name);
 }
 Mode** getAllModes(){
@@ -157,14 +168,14 @@ void setProgramibleKeysByIndex(int index, char* name){
 */
 Mode* dynamicalyLoadInModeByName(char* functionName){
     void *lib_handle;
-    CreateModePointer modeCreateFunction;;
+    CreateModePointer modeCreateFunction;
     const char *error;
 
     // Open the shared library at runtime
-    lib_handle = dlopen(libraryName, RTLD_LAZY);
+    lib_handle = dlopen(libraryName, RTLD_LAZY | RTLD_GLOBAL);
     if (!lib_handle) {
         fprintf(stderr, "Error: %s\n", dlerror());
-        return 1;
+        return NULL;
     }
 
     // Get a pointer to the function we want to call
@@ -172,13 +183,13 @@ Mode* dynamicalyLoadInModeByName(char* functionName){
     if ((error = dlerror()) != NULL)  {
         fprintf(stderr, "Error: %s\n", error);
         dlclose(lib_handle);
-        return 1;
+        return NULL;
     }
 
     // Call the function dynamically
     Mode* result = modeCreateFunction();
 
-    dlclose(lib_handle);
+//    dlclose(lib_handle);
 
     return result;
 }
@@ -189,7 +200,7 @@ char** getNamesOfLoadFunctions(){
     DIR* directory = opendir(path);
     if (directory == NULL) {
         perror("Unable to open directory");
-        return 1;
+        return NULL;
     }
     struct dirent *entry;
     while ((entry = readdir(directory)) != NULL) {
@@ -201,10 +212,15 @@ char** getNamesOfLoadFunctions(){
 
     //get the .c names of each of the files
     char** loadNames = malloc(sizeof(char*)*(fileCount+1));
+    if(loadNames == NULL) {
+        perror("malloc failed");
+        return NULL;
+    }
+
     directory = opendir(path);
     if (directory == NULL) {
         perror("Unable to open directory");
-        return 1;
+        return NULL;
     }
     int i = 0;
     while((entry = readdir(directory)) != NULL) {
@@ -216,6 +232,11 @@ char** getNamesOfLoadFunctions(){
     }
     closedir(directory);
     loadNames[i] = malloc(sizeof(char)*100);
+    if (loadNames[i] == NULL) {
+        perror("malloc failed");
+
+        return loadNames;
+    }
     sprintf(loadNames[i],"ENDOFNAMES");
     return loadNames;
 }

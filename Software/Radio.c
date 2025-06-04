@@ -1,4 +1,3 @@
-#include "Radio.h"
 #define SERIAL_PORT_S0 "/dev/ttyS0"
 #define SERIAL_PORT_S1 "/dev/ttyS1"
 #define SERIAL_PORT_USB0 "/dev/ttyUSB0"
@@ -81,7 +80,18 @@ void setRadioMode( Mode* modeToSetTo){
 void* runRadioCommand(KeyPress* keyInput){
     PRINTFLEVEL1("running mode of %s\n",radios[currentRadio]->currentMode->modeDetails->modeName);
     void* results;
+    printf("About to obtain results\n");
+    if (radios[currentRadio] == NULL) {
+        printf("radios[%d] is NULL!\n", currentRadio);
+    }
+    if (radios[currentRadio]->currentMode == NULL) {
+        printf("currentMode is NULL after setRadioMode!\n");
+    }
+    if (radios[currentRadio]->my_rig == NULL) {
+        printf("my_rig is NULL!\n");
+    }
     results = radios[currentRadio]->currentMode->modeInput(keyInput,radios[currentRadio]->my_rig);
+    printf("Obtained results\n");
     return results;
 }
 

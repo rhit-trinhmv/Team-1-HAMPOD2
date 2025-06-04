@@ -1,14 +1,10 @@
 # Compiler flags
-CC = arm-linux-gnueabihf-gcc
-CFLAGS = -Wall -g -lm
-CFLAGS += -I/opt/hamlib-arm/include
-CFLAGS += -I/opt/WiringNP-arm/include
-LDFLAGS = -lpthread -lhamlib
-LDFLAGS += -L/opt/hamlib-arm/lib -lhamlib
-LDFLAGS += -L/opt/WiringNP-arm/lib -Wl,-rpath,/opt/WiringNP-arm/lib -lwiringPi
+CC = gcc
+CFLAGS = -rdynamic  -Wall -g -lm
+LDFLAGS = -lpthread -lhamlib -lwiringPi 
 # Files
-HEADERS := $(wildcard Modes/*.h)
-LIB_SRCS := $(wildcard Modes/*.c)
+HEADERS := $(wildcard Modes/*.h) $(wildcard HamlibWrappedFunctions/*.h) $(wildcard APIObjects/*.h) $(wildcard ConfigSettings/*.h) 
+LIB_SRCS := $(wildcard Modes/*.c) $(wildcard HamlibWrappedFunctions/*.c) $(wildcard APIObjects/*.c) $(wildcard ConfigSettings/*.c)
 EXEC_SRC := Startup.c
 
 # Shared library name
@@ -36,11 +32,11 @@ all: $(EXEC_NAME)
 
 # Build shared library
 $(LIB_NAME): $(LIB_SRCS) $(HEADERS)
-	$(CC) $(CFLAGS) -DSHAREDLIB -fPIC -shared -o $(LIB_NAME) $(LIB_SRCS) $(LDFLAGS)
+	$(CC) $(CFLAGS) -rdynamic -DSHAREDLIB -fPIC -shared -o $(LIB_NAME) $(LIB_SRCS) $(LDFLAGS)
 
 # Build executable
 $(EXEC_NAME): $(EXEC_SRC) $(LIB_NAME)
-	$(CC) $(CFLAGS) -o $(EXEC_NAME) $(EXEC_SRC) -I. -L. -l:$(LIB_NAME) -ldl $(LDFLAGS) -Wl,-rpath,'$$ORIGIN'
+	$(CC) $(CFLAGS) -rdynamic -o $(EXEC_NAME) $(EXEC_SRC) -I. -L. -l:$(LIB_NAME) -ldl $(LDFLAGS) -Wl,-rpath,'$$ORIGIN'
 
 # Clean
 clean:

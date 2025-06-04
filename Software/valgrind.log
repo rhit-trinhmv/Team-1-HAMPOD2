@@ -1,0 +1,1122 @@
+==1366== Memcheck, a memory error detector
+==1366== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==1366== Using Valgrind-3.19.0 and LibVEX; rerun with -h for copyright info
+==1366== Command: ./Software.elf
+==1366== Parent PID: 1307
+==1366== 
+==1366== Invalid read of size 1
+==1366==    at 0x486BF68: strlen (vg_replace_strmem.c:494)
+==1366==    by 0x51A2E47: __vfprintf_internal (vfprintf-process-arg.c:397)
+==1366==    by 0x519B6EF: fprintf (fprintf.c:32)
+==1366==    by 0x10F421: writeConfigParamsToFile (ConfigParams.c:102)
+==1366==    by 0x537522F: configNavigation (ConfigMode.c:95)
+==1366==    by 0x5375409: configCommandRelay (ConfigMode.c:148)
+==1366==    by 0x10D70D: runRadioCommand (Radio.c:93)
+==1366==    by 0x1105AB: StandardModeFlow (StateMachine.c:362)
+==1366==    by 0x10FC79: modeFlow (StateMachine.c:22)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366==  Address 0x5fbd304 is 0 bytes after a block of size 12 alloc'd
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10F55B: convertTocharArray (ConfigParams.c:136)
+==1366==    by 0x10F147: loadConfigParams (ConfigParams.c:44)
+==1366==    by 0x113E19: fullStart (Startup.c:70)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 
+==1366== HEAP SUMMARY:
+==1366==     in use at exit: 65,748 bytes in 1,151 blocks
+==1366==   total heap usage: 25,109 allocs, 23,958 frees, 7,175,864 bytes allocated
+==1366== 
+==1366== 5 bytes in 1 blocks are still reachable in loss record 1 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x51CF577: strdup (strdup.c:42)
+==1366==    by 0x53756E1: DummyDTMFLoad (DummyDTMFMode.c:68)
+==1366==    by 0x10D185: dynamicalyLoadInModeByName (ModeRouting.c:190)
+==1366==    by 0x10CCE9: modeRoutingStart (ModeRouting.c:19)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 6 bytes in 1 blocks are still reachable in loss record 2 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x51CF577: strdup (strdup.c:42)
+==1366==    by 0x10E97B: setupDictinaryHashMap (FirmwareCommunication.c:276)
+==1366==    by 0x10E12D: firmwareCommunicationStartup (FirmwareCommunication.c:17)
+==1366==    by 0x113E07: fullStart (Startup.c:66)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 7 bytes in 1 blocks are still reachable in loss record 3 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x51CF577: strdup (strdup.c:42)
+==1366==    by 0x5377AE3: NormalLoad (NormalMode.c:1010)
+==1366==    by 0x10D185: dynamicalyLoadInModeByName (ModeRouting.c:190)
+==1366==    by 0x10CCE9: modeRoutingStart (ModeRouting.c:19)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 7 bytes in 1 blocks are still reachable in loss record 4 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x51CF577: strdup (strdup.c:42)
+==1366==    by 0x537556D: ConfigLoad (ConfigMode.c:203)
+==1366==    by 0x10D185: dynamicalyLoadInModeByName (ModeRouting.c:190)
+==1366==    by 0x10CCE9: modeRoutingStart (ModeRouting.c:19)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 8 bytes in 1 blocks are still reachable in loss record 5 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x10D343: startRadios (Radio.c:12)
+==1366==    by 0x110657: stateMachineStart (StateMachine.c:400)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 8 bytes in 1 blocks are still reachable in loss record 6 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x53756C3: DummyDTMFLoad (DummyDTMFMode.c:62)
+==1366==    by 0x10D185: dynamicalyLoadInModeByName (ModeRouting.c:190)
+==1366==    by 0x10CCE9: modeRoutingStart (ModeRouting.c:19)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 8 bytes in 1 blocks are still reachable in loss record 7 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x53760BF: MonitoringLoad (MonitoringMode.c:194)
+==1366==    by 0x10D185: dynamicalyLoadInModeByName (ModeRouting.c:190)
+==1366==    by 0x10CCE9: modeRoutingStart (ModeRouting.c:19)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 8 bytes in 1 blocks are still reachable in loss record 8 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x537592F: FrequensyLoad (FrequensyMode.c:84)
+==1366==    by 0x10D185: dynamicalyLoadInModeByName (ModeRouting.c:190)
+==1366==    by 0x10CCE9: modeRoutingStart (ModeRouting.c:19)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 8 bytes in 1 blocks are still reachable in loss record 9 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x5377AC5: NormalLoad (NormalMode.c:1004)
+==1366==    by 0x10D185: dynamicalyLoadInModeByName (ModeRouting.c:190)
+==1366==    by 0x10CCE9: modeRoutingStart (ModeRouting.c:19)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 8 bytes in 1 blocks are still reachable in loss record 10 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x537554F: ConfigLoad (ConfigMode.c:197)
+==1366==    by 0x10D185: dynamicalyLoadInModeByName (ModeRouting.c:190)
+==1366==    by 0x10CCE9: modeRoutingStart (ModeRouting.c:19)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 8 bytes in 1 blocks are still reachable in loss record 11 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x51CF577: strdup (strdup.c:42)
+==1366==    by 0x10F5B3: convertTocharArray (ConfigParams.c:146)
+==1366==    by 0x10F147: loadConfigParams (ConfigParams.c:44)
+==1366==    by 0x113E19: fullStart (Startup.c:70)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 8 bytes in 1 blocks are still reachable in loss record 12 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x1123E3: createLinkedList (LinkedList.c:3)
+==1366==    by 0x11270D: startMonitoringLoop (Monitoring.c:7)
+==1366==    by 0x113E21: fullStart (Startup.c:72)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 8 bytes in 1 blocks are still reachable in loss record 13 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x48DDCE1: rig_open (in /usr/lib/arm-linux-gnueabihf/libhamlib.so.4.0.6)
+==1366== 
+==1366== 8 bytes in 1 blocks are definitely lost in loss record 14 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x49D9F67: ??? (in /usr/lib/arm-linux-gnueabihf/libhamlib.so.4.0.6)
+==1366== 
+==1366== 8 bytes in 1 blocks are definitely lost in loss record 15 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x49DB725: ??? (in /usr/lib/arm-linux-gnueabihf/libhamlib.so.4.0.6)
+==1366== 
+==1366== 11 bytes in 1 blocks are still reachable in loss record 16 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10E945: setupDictinaryHashMap (FirmwareCommunication.c:270)
+==1366==    by 0x10E12D: firmwareCommunicationStartup (FirmwareCommunication.c:17)
+==1366==    by 0x113E07: fullStart (Startup.c:66)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 11 bytes in 1 blocks are still reachable in loss record 17 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x51CF577: strdup (strdup.c:42)
+==1366==    by 0x53760DD: MonitoringLoad (MonitoringMode.c:200)
+==1366==    by 0x10D185: dynamicalyLoadInModeByName (ModeRouting.c:190)
+==1366==    by 0x10CCE9: modeRoutingStart (ModeRouting.c:19)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 12 bytes in 1 blocks are still reachable in loss record 18 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x5377A85: NormalLoad (NormalMode.c:993)
+==1366==    by 0x10D185: dynamicalyLoadInModeByName (ModeRouting.c:190)
+==1366==    by 0x10CCE9: modeRoutingStart (ModeRouting.c:19)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 12 bytes in 1 blocks are still reachable in loss record 19 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10F55B: convertTocharArray (ConfigParams.c:136)
+==1366==    by 0x10F147: loadConfigParams (ConfigParams.c:44)
+==1366==    by 0x113E19: fullStart (Startup.c:70)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 13 bytes in 1 blocks are definitely lost in loss record 20 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10ED0F: applyDictionary (FirmwareCommunication.c:388)
+==1366==    by 0x10E14D: sendSpeakerOutput (FirmwareCommunication.c:27)
+==1366==    by 0x110AF9: selectEntryInList (StateMachine.c:537)
+==1366==    by 0x10FD63: BootupFlow (StateMachine.c:72)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 14 bytes in 1 blocks are still reachable in loss record 21 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x401665B: malloc (rtld-malloc.h:56)
+==1366==    by 0x401665B: strdup (strdup.c:42)
+==1366==    by 0x4005853: _dl_map_object (dl-load.c:2205)
+==1366==    by 0x4007FDF: dl_open_worker_begin (dl-open.c:534)
+==1366==    by 0x5247983: _dl_catch_exception (dl-error-skeleton.c:208)
+==1366==    by 0x4007A51: dl_open_worker (dl-open.c:782)
+==1366==    by 0x5247983: _dl_catch_exception (dl-error-skeleton.c:208)
+==1366==    by 0x4007CC9: _dl_open (dl-open.c:884)
+==1366==    by 0x51BAF03: dlopen_doit (dlopen.c:56)
+==1366==    by 0x5247983: _dl_catch_exception (dl-error-skeleton.c:208)
+==1366==    by 0x5247A13: _dl_catch_error (dl-error-skeleton.c:227)
+==1366==    by 0x51BAB2D: _dlerror_run (dlerror.c:138)
+==1366== 
+==1366== 15 bytes in 1 blocks are still reachable in loss record 22 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x51CF577: strdup (strdup.c:42)
+==1366==    by 0x537594D: FrequensyLoad (FrequensyMode.c:90)
+==1366==    by 0x10D185: dynamicalyLoadInModeByName (ModeRouting.c:190)
+==1366==    by 0x10CCE9: modeRoutingStart (ModeRouting.c:19)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 20 bytes in 1 blocks are still reachable in loss record 23 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x5375693: DummyDTMFLoad (DummyDTMFMode.c:52)
+==1366==    by 0x10D185: dynamicalyLoadInModeByName (ModeRouting.c:190)
+==1366==    by 0x10CCE9: modeRoutingStart (ModeRouting.c:19)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 20 bytes in 1 blocks are still reachable in loss record 24 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x537608F: MonitoringLoad (MonitoringMode.c:184)
+==1366==    by 0x10D185: dynamicalyLoadInModeByName (ModeRouting.c:190)
+==1366==    by 0x10CCE9: modeRoutingStart (ModeRouting.c:19)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 20 bytes in 1 blocks are still reachable in loss record 25 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x53758FF: FrequensyLoad (FrequensyMode.c:74)
+==1366==    by 0x10D185: dynamicalyLoadInModeByName (ModeRouting.c:190)
+==1366==    by 0x10CCE9: modeRoutingStart (ModeRouting.c:19)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 20 bytes in 1 blocks are still reachable in loss record 26 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x5377A7B: NormalLoad (NormalMode.c:992)
+==1366==    by 0x10D185: dynamicalyLoadInModeByName (ModeRouting.c:190)
+==1366==    by 0x10CCE9: modeRoutingStart (ModeRouting.c:19)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 20 bytes in 1 blocks are still reachable in loss record 27 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x537551B: ConfigLoad (ConfigMode.c:187)
+==1366==    by 0x10D185: dynamicalyLoadInModeByName (ModeRouting.c:190)
+==1366==    by 0x10CCE9: modeRoutingStart (ModeRouting.c:19)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 20 bytes in 1 blocks are still reachable in loss record 28 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10CE79: getAllModeNames (ModeRouting.c:55)
+==1366==    by 0x11065F: stateMachineStart (StateMachine.c:402)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 20 bytes in 1 blocks are definitely lost in loss record 29 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10CB3F: getAllEntriesHashMap (HashMap.c:151)
+==1366==    by 0x10CE57: getAllModes (ModeRouting.c:51)
+==1366==    by 0x10CE81: getAllModeNames (ModeRouting.c:56)
+==1366==    by 0x11065F: stateMachineStart (StateMachine.c:402)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 24 bytes in 1 blocks are still reachable in loss record 30 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10C64F: createHashMap (HashMap.c:3)
+==1366==    by 0x10E6EB: setupAudioHashMap (FirmwareCommunication.c:188)
+==1366==    by 0x10E129: firmwareCommunicationStartup (FirmwareCommunication.c:16)
+==1366==    by 0x113E07: fullStart (Startup.c:66)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 24 bytes in 1 blocks are still reachable in loss record 31 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10C64F: createHashMap (HashMap.c:3)
+==1366==    by 0x10E905: setupDictinaryHashMap (FirmwareCommunication.c:263)
+==1366==    by 0x10E12D: firmwareCommunicationStartup (FirmwareCommunication.c:17)
+==1366==    by 0x113E07: fullStart (Startup.c:66)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 24 bytes in 1 blocks are still reachable in loss record 32 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10C64F: createHashMap (HashMap.c:3)
+==1366==    by 0x10CCAF: modeRoutingStart (ModeRouting.c:9)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 24 bytes in 1 blocks are still reachable in loss record 33 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10C64F: createHashMap (HashMap.c:3)
+==1366==    by 0x10EF01: loadConfigParams (ConfigParams.c:5)
+==1366==    by 0x113E19: fullStart (Startup.c:70)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 24 bytes in 1 blocks are still reachable in loss record 34 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10D36F: loadUpRadioUsingData (Radio.c:19)
+==1366==    by 0x10FF4D: BootupFlow (StateMachine.c:121)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 28 bytes in 1 blocks are still reachable in loss record 35 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10F6C7: getListOfConfigNames (ConfigParams.c:181)
+==1366==    by 0x5375493: enterConfigMode (ConfigMode.c:173)
+==1366==    by 0x10D611: setRadioMode (Radio.c:76)
+==1366==    by 0x110637: switchToRadioMode (StateMachine.c:393)
+==1366==    by 0x110415: ModeSelectFlow (StateMachine.c:270)
+==1366==    by 0x10FC83: modeFlow (StateMachine.c:26)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 28 bytes in 1 blocks are definitely lost in loss record 36 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10ED0F: applyDictionary (FirmwareCommunication.c:388)
+==1366==    by 0x10E14D: sendSpeakerOutput (FirmwareCommunication.c:27)
+==1366==    by 0x5375021: configNavigation (ConfigMode.c:32)
+==1366==    by 0x5375409: configCommandRelay (ConfigMode.c:148)
+==1366==    by 0x10D70D: runRadioCommand (Radio.c:93)
+==1366==    by 0x1105AB: StandardModeFlow (StateMachine.c:362)
+==1366==    by 0x10FC79: modeFlow (StateMachine.c:22)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 30 bytes in 1 blocks are definitely lost in loss record 37 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x11082B: selectEntryInList (StateMachine.c:473)
+==1366==    by 0x10FD63: BootupFlow (StateMachine.c:72)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 30 bytes in 1 blocks are definitely lost in loss record 38 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x11082B: selectEntryInList (StateMachine.c:473)
+==1366==    by 0x10FE6F: BootupFlow (StateMachine.c:100)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 32 bytes in 1 blocks are still reachable in loss record 39 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x10C65B: createHashMap (HashMap.c:4)
+==1366==    by 0x10E905: setupDictinaryHashMap (FirmwareCommunication.c:263)
+==1366==    by 0x10E12D: firmwareCommunicationStartup (FirmwareCommunication.c:17)
+==1366==    by 0x113E07: fullStart (Startup.c:66)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 32 bytes in 1 blocks are still reachable in loss record 40 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x10C66B: createHashMap (HashMap.c:5)
+==1366==    by 0x10E905: setupDictinaryHashMap (FirmwareCommunication.c:263)
+==1366==    by 0x10E12D: firmwareCommunicationStartup (FirmwareCommunication.c:17)
+==1366==    by 0x113E07: fullStart (Startup.c:66)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 32 bytes in 1 blocks are still reachable in loss record 41 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x10C65B: createHashMap (HashMap.c:4)
+==1366==    by 0x10CCAF: modeRoutingStart (ModeRouting.c:9)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 32 bytes in 1 blocks are still reachable in loss record 42 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x10C66B: createHashMap (HashMap.c:5)
+==1366==    by 0x10CCAF: modeRoutingStart (ModeRouting.c:9)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 32 bytes in 1 blocks are still reachable in loss record 43 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x10C65B: createHashMap (HashMap.c:4)
+==1366==    by 0x10EF01: loadConfigParams (ConfigParams.c:5)
+==1366==    by 0x113E19: fullStart (Startup.c:70)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 32 bytes in 1 blocks are still reachable in loss record 44 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x10C66B: createHashMap (HashMap.c:5)
+==1366==    by 0x10EF01: loadConfigParams (ConfigParams.c:5)
+==1366==    by 0x113E19: fullStart (Startup.c:70)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 32 bytes in 1 blocks are definitely lost in loss record 45 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x49837CB: ??? (in /usr/lib/arm-linux-gnueabihf/libhamlib.so.4.0.6)
+==1366== 
+==1366== 36 bytes in 1 blocks are still reachable in loss record 46 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x53760F9: MonitoringLoad (MonitoringMode.c:205)
+==1366==    by 0x10D185: dynamicalyLoadInModeByName (ModeRouting.c:190)
+==1366==    by 0x10CCE9: modeRoutingStart (ModeRouting.c:19)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 37 bytes in 2 blocks are still reachable in loss record 47 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10C387: customSubString (GeneralFunctions.c:59)
+==1366==    by 0x10F599: convertTocharArray (ConfigParams.c:143)
+==1366==    by 0x10F147: loadConfigParams (ConfigParams.c:44)
+==1366==    by 0x113E19: fullStart (Startup.c:70)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 40 bytes in 1 blocks are definitely lost in loss record 48 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10ED0F: applyDictionary (FirmwareCommunication.c:388)
+==1366==    by 0x10E14D: sendSpeakerOutput (FirmwareCommunication.c:27)
+==1366==    by 0x110AF9: selectEntryInList (StateMachine.c:537)
+==1366==    by 0x10FE6F: BootupFlow (StateMachine.c:100)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 45 bytes in 1 blocks are still reachable in loss record 49 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10E2C1: sendSpeakerOutput (FirmwareCommunication.c:76)
+==1366==    by 0x537523F: configNavigation (ConfigMode.c:96)
+==1366==    by 0x5375409: configCommandRelay (ConfigMode.c:148)
+==1366==    by 0x10D70D: runRadioCommand (Radio.c:93)
+==1366==    by 0x1105AB: StandardModeFlow (StateMachine.c:362)
+==1366==    by 0x10FC79: modeFlow (StateMachine.c:22)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 48 bytes in 1 blocks are still reachable in loss record 50 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400CE59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400CE59: _dl_check_map_versions (dl-version.c:280)
+==1366==    by 0x4008053: dl_open_worker_begin (dl-open.c:600)
+==1366==    by 0x5247983: _dl_catch_exception (dl-error-skeleton.c:208)
+==1366==    by 0x4007A51: dl_open_worker (dl-open.c:782)
+==1366==    by 0x5247983: _dl_catch_exception (dl-error-skeleton.c:208)
+==1366==    by 0x4007CC9: _dl_open (dl-open.c:884)
+==1366==    by 0x51BAF03: dlopen_doit (dlopen.c:56)
+==1366==    by 0x5247983: _dl_catch_exception (dl-error-skeleton.c:208)
+==1366==    by 0x5247A13: _dl_catch_error (dl-error-skeleton.c:227)
+==1366==    by 0x51BAB2D: _dlerror_run (dlerror.c:138)
+==1366==    by 0x51BAFA7: dlopen_implementation (dlopen.c:71)
+==1366==    by 0x51BAFA7: dlopen@@GLIBC_2.34 (dlopen.c:81)
+==1366== 
+==1366== 48 bytes in 1 blocks are still reachable in loss record 51 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x10CD4F: modeRoutingStart (ModeRouting.c:27)
+==1366==    by 0x11065B: stateMachineStart (StateMachine.c:401)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 56 bytes in 1 blocks are still reachable in loss record 52 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10F7A1: getListOfCurrentValues (ConfigParams.c:201)
+==1366==    by 0x537525B: configNavigation (ConfigMode.c:102)
+==1366==    by 0x5375409: configCommandRelay (ConfigMode.c:148)
+==1366==    by 0x10D70D: runRadioCommand (Radio.c:93)
+==1366==    by 0x1105AB: StandardModeFlow (StateMachine.c:362)
+==1366==    by 0x10FC79: modeFlow (StateMachine.c:22)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 60 bytes in 1 blocks are still reachable in loss record 53 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x111CD7: populateConfigFunctions (ConfigFunctions.c:8)
+==1366==    by 0x113E1D: fullStart (Startup.c:71)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 60 bytes in 1 blocks are still reachable in loss record 54 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10E2AD: sendSpeakerOutput (FirmwareCommunication.c:75)
+==1366==    by 0x537523F: configNavigation (ConfigMode.c:96)
+==1366==    by 0x5375409: configCommandRelay (ConfigMode.c:148)
+==1366==    by 0x10D70D: runRadioCommand (Radio.c:93)
+==1366==    by 0x1105AB: StandardModeFlow (StateMachine.c:362)
+==1366==    by 0x10FC79: modeFlow (StateMachine.c:22)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 62 bytes in 1 blocks are still reachable in loss record 55 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x111D15: populateConfigFunctions (ConfigFunctions.c:13)
+==1366==    by 0x113E1D: fullStart (Startup.c:71)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 64 bytes in 1 blocks are definitely lost in loss record 56 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10ED0F: applyDictionary (FirmwareCommunication.c:388)
+==1366==    by 0x10E14D: sendSpeakerOutput (FirmwareCommunication.c:27)
+==1366==    by 0x10FE2F: BootupFlow (StateMachine.c:88)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 68 bytes in 1 blocks are still reachable in loss record 57 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x48EFF73: serial_setup (in /usr/lib/arm-linux-gnueabihf/libhamlib.so.4.0.6)
+==1366== 
+==1366== 75 bytes in 3 blocks are definitely lost in loss record 58 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10ED0F: applyDictionary (FirmwareCommunication.c:388)
+==1366==    by 0x10E14D: sendSpeakerOutput (FirmwareCommunication.c:27)
+==1366==    by 0x537510D: configNavigation (ConfigMode.c:50)
+==1366==    by 0x5375409: configCommandRelay (ConfigMode.c:148)
+==1366==    by 0x10D70D: runRadioCommand (Radio.c:93)
+==1366==    by 0x1105AB: StandardModeFlow (StateMachine.c:362)
+==1366==    by 0x10FC79: modeFlow (StateMachine.c:22)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 79 bytes in 1 blocks are definitely lost in loss record 59 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10ED0F: applyDictionary (FirmwareCommunication.c:388)
+==1366==    by 0x10E14D: sendSpeakerOutput (FirmwareCommunication.c:27)
+==1366==    by 0x10FFC3: BootupFlow (StateMachine.c:144)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 88 bytes in 7 blocks are still reachable in loss record 60 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10C387: customSubString (GeneralFunctions.c:59)
+==1366==    by 0x10EFA1: loadConfigParams (ConfigParams.c:22)
+==1366==    by 0x113E19: fullStart (Startup.c:70)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 88 bytes in 1 blocks are definitely lost in loss record 61 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10ED0F: applyDictionary (FirmwareCommunication.c:388)
+==1366==    by 0x10E14D: sendSpeakerOutput (FirmwareCommunication.c:27)
+==1366==    by 0x110629: switchToRadioMode (StateMachine.c:392)
+==1366==    by 0x110415: ModeSelectFlow (StateMachine.c:270)
+==1366==    by 0x10FC83: modeFlow (StateMachine.c:26)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 100 bytes in 1 blocks are still reachable in loss record 62 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x4007B6F: malloc (rtld-malloc.h:56)
+==1366==    by 0x4007B6F: add_to_global_resize (dl-open.c:152)
+==1366==    by 0x4008449: dl_open_worker_begin (dl-open.c:716)
+==1366==    by 0x5247983: _dl_catch_exception (dl-error-skeleton.c:208)
+==1366==    by 0x4007A51: dl_open_worker (dl-open.c:782)
+==1366==    by 0x5247983: _dl_catch_exception (dl-error-skeleton.c:208)
+==1366==    by 0x4007CC9: _dl_open (dl-open.c:884)
+==1366==    by 0x51BAF03: dlopen_doit (dlopen.c:56)
+==1366==    by 0x5247983: _dl_catch_exception (dl-error-skeleton.c:208)
+==1366==    by 0x5247A13: _dl_catch_error (dl-error-skeleton.c:227)
+==1366==    by 0x51BAB2D: _dlerror_run (dlerror.c:138)
+==1366==    by 0x51BAFA7: dlopen_implementation (dlopen.c:71)
+==1366==    by 0x51BAFA7: dlopen@@GLIBC_2.34 (dlopen.c:81)
+==1366== 
+==1366== 103 bytes in 1 blocks are definitely lost in loss record 63 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10ED0F: applyDictionary (FirmwareCommunication.c:388)
+==1366==    by 0x10E14D: sendSpeakerOutput (FirmwareCommunication.c:27)
+==1366==    by 0x537523F: configNavigation (ConfigMode.c:96)
+==1366==    by 0x5375409: configCommandRelay (ConfigMode.c:148)
+==1366==    by 0x10D70D: runRadioCommand (Radio.c:93)
+==1366==    by 0x1105AB: StandardModeFlow (StateMachine.c:362)
+==1366==    by 0x10FC79: modeFlow (StateMachine.c:22)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 106 bytes in 1 blocks are definitely lost in loss record 64 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10ED0F: applyDictionary (FirmwareCommunication.c:388)
+==1366==    by 0x10E14D: sendSpeakerOutput (FirmwareCommunication.c:27)
+==1366==    by 0x10FF7D: BootupFlow (StateMachine.c:127)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 115 bytes in 1 blocks are definitely lost in loss record 65 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10ED0F: applyDictionary (FirmwareCommunication.c:388)
+==1366==    by 0x10E14D: sendSpeakerOutput (FirmwareCommunication.c:27)
+==1366==    by 0x10FD05: BootupFlow (StateMachine.c:55)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 124 bytes in 1 blocks are definitely lost in loss record 66 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10ED0F: applyDictionary (FirmwareCommunication.c:388)
+==1366==    by 0x10E14D: sendSpeakerOutput (FirmwareCommunication.c:27)
+==1366==    by 0x11053D: StandardModeFlow (StateMachine.c:323)
+==1366==    by 0x10FC79: modeFlow (StateMachine.c:22)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 142 bytes in 1 blocks are still reachable in loss record 67 of 112
+==1366==    at 0x486457C: malloc (vg_replace_malloc.c:380)
+==1366==    by 0x40077CB: realloc (rtld-malloc.h:62)
+==1366==    by 0x40077CB: _dl_new_object (dl-object.c:218)
+==1366==    by 0x4004803: _dl_map_object_from_fd (dl-load.c:1063)
+==1366==    by 0x40058AF: _dl_map_object (dl-load.c:2272)
+==1366==    by 0x4007FDF: dl_open_worker_begin (dl-open.c:534)
+==1366==    by 0x5247983: _dl_catch_exception (dl-error-skeleton.c:208)
+==1366==    by 0x4007A51: dl_open_worker (dl-open.c:782)
+==1366==    by 0x5247983: _dl_catch_exception (dl-error-skeleton.c:208)
+==1366==    by 0x4007CC9: _dl_open (dl-open.c:884)
+==1366==    by 0x51BAF03: dlopen_doit (dlopen.c:56)
+==1366==    by 0x5247983: _dl_catch_exception (dl-error-skeleton.c:208)
+==1366==    by 0x5247A13: _dl_catch_error (dl-error-skeleton.c:227)
+==1366== 
+==1366== 160 bytes in 1 blocks are possibly lost in loss record 68 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400BD59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400BD59: allocate_dtv (dl-tls.c:376)
+==1366==    by 0x400C487: _dl_allocate_tls (dl-tls.c:635)
+==1366==    by 0x51BE883: allocate_stack (allocatestack.c:423)
+==1366==    by 0x51BE883: pthread_create@@GLIBC_2.34 (pthread_create.c:650)
+==1366==    by 0x112757: startMonitoringLoop (Monitoring.c:15)
+==1366==    by 0x113E21: fullStart (Startup.c:72)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 160 bytes in 1 blocks are possibly lost in loss record 69 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400BD59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400BD59: allocate_dtv (dl-tls.c:376)
+==1366==    by 0x400C487: _dl_allocate_tls (dl-tls.c:635)
+==1366==    by 0x51BE883: allocate_stack (allocatestack.c:423)
+==1366==    by 0x51BE883: pthread_create@@GLIBC_2.34 (pthread_create.c:650)
+==1366==    by 0x10E351: sendSpeakerOutput (FirmwareCommunication.c:93)
+==1366==    by 0x113E35: fullStart (Startup.c:76)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 160 bytes in 1 blocks are possibly lost in loss record 70 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400BD59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400BD59: allocate_dtv (dl-tls.c:376)
+==1366==    by 0x400C487: _dl_allocate_tls (dl-tls.c:635)
+==1366==    by 0x51BE883: allocate_stack (allocatestack.c:423)
+==1366==    by 0x51BE883: pthread_create@@GLIBC_2.34 (pthread_create.c:650)
+==1366==    by 0x10E351: sendSpeakerOutput (FirmwareCommunication.c:93)
+==1366==    by 0x10FD05: BootupFlow (StateMachine.c:55)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 160 bytes in 1 blocks are possibly lost in loss record 71 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400BD59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400BD59: allocate_dtv (dl-tls.c:376)
+==1366==    by 0x400C487: _dl_allocate_tls (dl-tls.c:635)
+==1366==    by 0x51BE883: allocate_stack (allocatestack.c:423)
+==1366==    by 0x51BE883: pthread_create@@GLIBC_2.34 (pthread_create.c:650)
+==1366==    by 0x10E351: sendSpeakerOutput (FirmwareCommunication.c:93)
+==1366==    by 0x110AF9: selectEntryInList (StateMachine.c:537)
+==1366==    by 0x10FD63: BootupFlow (StateMachine.c:72)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 160 bytes in 1 blocks are possibly lost in loss record 72 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400BD59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400BD59: allocate_dtv (dl-tls.c:376)
+==1366==    by 0x400C487: _dl_allocate_tls (dl-tls.c:635)
+==1366==    by 0x51BE883: allocate_stack (allocatestack.c:423)
+==1366==    by 0x51BE883: pthread_create@@GLIBC_2.34 (pthread_create.c:650)
+==1366==    by 0x10E351: sendSpeakerOutput (FirmwareCommunication.c:93)
+==1366==    by 0x10FE2F: BootupFlow (StateMachine.c:88)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 160 bytes in 1 blocks are possibly lost in loss record 73 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400BD59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400BD59: allocate_dtv (dl-tls.c:376)
+==1366==    by 0x400C487: _dl_allocate_tls (dl-tls.c:635)
+==1366==    by 0x51BE883: allocate_stack (allocatestack.c:423)
+==1366==    by 0x51BE883: pthread_create@@GLIBC_2.34 (pthread_create.c:650)
+==1366==    by 0x10E351: sendSpeakerOutput (FirmwareCommunication.c:93)
+==1366==    by 0x110AF9: selectEntryInList (StateMachine.c:537)
+==1366==    by 0x10FE6F: BootupFlow (StateMachine.c:100)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 160 bytes in 1 blocks are possibly lost in loss record 74 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400BD59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400BD59: allocate_dtv (dl-tls.c:376)
+==1366==    by 0x400C487: _dl_allocate_tls (dl-tls.c:635)
+==1366==    by 0x51BE883: allocate_stack (allocatestack.c:423)
+==1366==    by 0x51BE883: pthread_create@@GLIBC_2.34 (pthread_create.c:650)
+==1366==    by 0x10E351: sendSpeakerOutput (FirmwareCommunication.c:93)
+==1366==    by 0x10FE8F: BootupFlow (StateMachine.c:102)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 160 bytes in 1 blocks are possibly lost in loss record 75 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400BD59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400BD59: allocate_dtv (dl-tls.c:376)
+==1366==    by 0x400C487: _dl_allocate_tls (dl-tls.c:635)
+==1366==    by 0x51BE883: allocate_stack (allocatestack.c:423)
+==1366==    by 0x51BE883: pthread_create@@GLIBC_2.34 (pthread_create.c:650)
+==1366==    by 0x10E351: sendSpeakerOutput (FirmwareCommunication.c:93)
+==1366==    by 0x10FEF1: BootupFlow (StateMachine.c:120)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 160 bytes in 1 blocks are possibly lost in loss record 76 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400BD59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400BD59: allocate_dtv (dl-tls.c:376)
+==1366==    by 0x400C487: _dl_allocate_tls (dl-tls.c:635)
+==1366==    by 0x51BE883: allocate_stack (allocatestack.c:423)
+==1366==    by 0x51BE883: pthread_create@@GLIBC_2.34 (pthread_create.c:650)
+==1366==    by 0x10E351: sendSpeakerOutput (FirmwareCommunication.c:93)
+==1366==    by 0x10FF7D: BootupFlow (StateMachine.c:127)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 160 bytes in 1 blocks are possibly lost in loss record 77 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400BD59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400BD59: allocate_dtv (dl-tls.c:376)
+==1366==    by 0x400C487: _dl_allocate_tls (dl-tls.c:635)
+==1366==    by 0x51BE883: allocate_stack (allocatestack.c:423)
+==1366==    by 0x51BE883: pthread_create@@GLIBC_2.34 (pthread_create.c:650)
+==1366==    by 0x10E351: sendSpeakerOutput (FirmwareCommunication.c:93)
+==1366==    by 0x10FFC3: BootupFlow (StateMachine.c:144)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 160 bytes in 1 blocks are possibly lost in loss record 78 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400BD59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400BD59: allocate_dtv (dl-tls.c:376)
+==1366==    by 0x400C487: _dl_allocate_tls (dl-tls.c:635)
+==1366==    by 0x51BE883: allocate_stack (allocatestack.c:423)
+==1366==    by 0x51BE883: pthread_create@@GLIBC_2.34 (pthread_create.c:650)
+==1366==    by 0x10E351: sendSpeakerOutput (FirmwareCommunication.c:93)
+==1366==    by 0x11053D: StandardModeFlow (StateMachine.c:323)
+==1366==    by 0x10FC79: modeFlow (StateMachine.c:22)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 160 bytes in 1 blocks are possibly lost in loss record 79 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400BD59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400BD59: allocate_dtv (dl-tls.c:376)
+==1366==    by 0x400C487: _dl_allocate_tls (dl-tls.c:635)
+==1366==    by 0x51BE883: allocate_stack (allocatestack.c:423)
+==1366==    by 0x51BE883: pthread_create@@GLIBC_2.34 (pthread_create.c:650)
+==1366==    by 0x10E351: sendSpeakerOutput (FirmwareCommunication.c:93)
+==1366==    by 0x1103D1: ModeSelectFlow (StateMachine.c:255)
+==1366==    by 0x10FC83: modeFlow (StateMachine.c:26)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 160 bytes in 1 blocks are possibly lost in loss record 80 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400BD59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400BD59: allocate_dtv (dl-tls.c:376)
+==1366==    by 0x400C487: _dl_allocate_tls (dl-tls.c:635)
+==1366==    by 0x51BE883: allocate_stack (allocatestack.c:423)
+==1366==    by 0x51BE883: pthread_create@@GLIBC_2.34 (pthread_create.c:650)
+==1366==    by 0x10E351: sendSpeakerOutput (FirmwareCommunication.c:93)
+==1366==    by 0x110629: switchToRadioMode (StateMachine.c:392)
+==1366==    by 0x110415: ModeSelectFlow (StateMachine.c:270)
+==1366==    by 0x10FC83: modeFlow (StateMachine.c:26)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 160 bytes in 1 blocks are possibly lost in loss record 81 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400BD59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400BD59: allocate_dtv (dl-tls.c:376)
+==1366==    by 0x400C487: _dl_allocate_tls (dl-tls.c:635)
+==1366==    by 0x51BE883: allocate_stack (allocatestack.c:423)
+==1366==    by 0x51BE883: pthread_create@@GLIBC_2.34 (pthread_create.c:650)
+==1366==    by 0x10E351: sendSpeakerOutput (FirmwareCommunication.c:93)
+==1366==    by 0x5375021: configNavigation (ConfigMode.c:32)
+==1366==    by 0x5375409: configCommandRelay (ConfigMode.c:148)
+==1366==    by 0x10D70D: runRadioCommand (Radio.c:93)
+==1366==    by 0x1105AB: StandardModeFlow (StateMachine.c:362)
+==1366==    by 0x10FC79: modeFlow (StateMachine.c:22)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366== 
+==1366== 160 bytes in 1 blocks are possibly lost in loss record 82 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400BD59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400BD59: allocate_dtv (dl-tls.c:376)
+==1366==    by 0x400C487: _dl_allocate_tls (dl-tls.c:635)
+==1366==    by 0x51BE883: allocate_stack (allocatestack.c:423)
+==1366==    by 0x51BE883: pthread_create@@GLIBC_2.34 (pthread_create.c:650)
+==1366==    by 0x10E351: sendSpeakerOutput (FirmwareCommunication.c:93)
+==1366==    by 0x537523F: configNavigation (ConfigMode.c:96)
+==1366==    by 0x5375409: configCommandRelay (ConfigMode.c:148)
+==1366==    by 0x10D70D: runRadioCommand (Radio.c:93)
+==1366==    by 0x1105AB: StandardModeFlow (StateMachine.c:362)
+==1366==    by 0x10FC79: modeFlow (StateMachine.c:22)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366== 
+==1366== 169 bytes in 1 blocks are definitely lost in loss record 83 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10ED0F: applyDictionary (FirmwareCommunication.c:388)
+==1366==    by 0x10E14D: sendSpeakerOutput (FirmwareCommunication.c:27)
+==1366==    by 0x10FEF1: BootupFlow (StateMachine.c:120)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 181 bytes in 1 blocks are definitely lost in loss record 84 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10ED0F: applyDictionary (FirmwareCommunication.c:388)
+==1366==    by 0x10E14D: sendSpeakerOutput (FirmwareCommunication.c:27)
+==1366==    by 0x10FE8F: BootupFlow (StateMachine.c:102)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 181 bytes in 1 blocks are definitely lost in loss record 85 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10ED0F: applyDictionary (FirmwareCommunication.c:388)
+==1366==    by 0x10E14D: sendSpeakerOutput (FirmwareCommunication.c:27)
+==1366==    by 0x1103D1: ModeSelectFlow (StateMachine.c:255)
+==1366==    by 0x10FC83: modeFlow (StateMachine.c:26)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 208 bytes in 1 blocks are definitely lost in loss record 86 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10ED0F: applyDictionary (FirmwareCommunication.c:388)
+==1366==    by 0x10E14D: sendSpeakerOutput (FirmwareCommunication.c:27)
+==1366==    by 0x113E35: fullStart (Startup.c:76)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 232 bytes in 4 blocks are definitely lost in loss record 87 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10ED0F: applyDictionary (FirmwareCommunication.c:388)
+==1366==    by 0x10E44F: sendSpeakerOutputWithConditions (FirmwareCommunication.c:112)
+==1366==    by 0x110949: selectEntryInList (StateMachine.c:488)
+==1366==    by 0x10FD63: BootupFlow (StateMachine.c:72)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 248 bytes in 1 blocks are still reachable in loss record 88 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10C23F: textFileToArray (GeneralFunctions.c:23)
+==1366==    by 0x11067B: stateMachineStart (StateMachine.c:404)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 300 bytes in 3 blocks are definitely lost in loss record 89 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10F8BD: incrementConfig (ConfigParams.c:232)
+==1366==    by 0x53750E5: configNavigation (ConfigMode.c:48)
+==1366==    by 0x5375409: configCommandRelay (ConfigMode.c:148)
+==1366==    by 0x10D70D: runRadioCommand (Radio.c:93)
+==1366==    by 0x1105AB: StandardModeFlow (StateMachine.c:362)
+==1366==    by 0x10FC79: modeFlow (StateMachine.c:22)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 324 bytes in 1 blocks are still reachable in loss record 90 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10C23F: textFileToArray (GeneralFunctions.c:23)
+==1366==    by 0x10FDB7: BootupFlow (StateMachine.c:79)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 324 bytes in 1 blocks are still reachable in loss record 91 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10C23F: textFileToArray (GeneralFunctions.c:23)
+==1366==    by 0x10FE15: BootupFlow (StateMachine.c:86)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 348 bytes in 6 blocks are definitely lost in loss record 92 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10ED0F: applyDictionary (FirmwareCommunication.c:388)
+==1366==    by 0x10E44F: sendSpeakerOutputWithConditions (FirmwareCommunication.c:112)
+==1366==    by 0x110949: selectEntryInList (StateMachine.c:488)
+==1366==    by 0x10FE6F: BootupFlow (StateMachine.c:100)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 376 bytes in 1 blocks are still reachable in loss record 93 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x495308D: icom_init (in /usr/lib/arm-linux-gnueabihf/libhamlib.so.4.0.6)
+==1366== 
+==1366== 392 bytes in 29 blocks are definitely lost in loss record 94 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10C387: customSubString (GeneralFunctions.c:59)
+==1366==    by 0x10EF69: loadConfigParams (ConfigParams.c:18)
+==1366==    by 0x113E19: fullStart (Startup.c:70)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 475 bytes in 1 blocks are still reachable in loss record 95 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x49530D5: icom_init (in /usr/lib/arm-linux-gnueabihf/libhamlib.so.4.0.6)
+==1366== 
+==1366== 480 bytes in 3 blocks are possibly lost in loss record 96 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400BD59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400BD59: allocate_dtv (dl-tls.c:376)
+==1366==    by 0x400C487: _dl_allocate_tls (dl-tls.c:635)
+==1366==    by 0x51BE883: allocate_stack (allocatestack.c:423)
+==1366==    by 0x51BE883: pthread_create@@GLIBC_2.34 (pthread_create.c:650)
+==1366==    by 0x10E351: sendSpeakerOutput (FirmwareCommunication.c:93)
+==1366==    by 0x537510D: configNavigation (ConfigMode.c:50)
+==1366==    by 0x5375409: configCommandRelay (ConfigMode.c:148)
+==1366==    by 0x10D70D: runRadioCommand (Radio.c:93)
+==1366==    by 0x1105AB: StandardModeFlow (StateMachine.c:362)
+==1366==    by 0x10FC79: modeFlow (StateMachine.c:22)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366== 
+==1366== 504 bytes in 7 blocks are still reachable in loss record 97 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x10EF23: loadConfigParams (ConfigParams.c:11)
+==1366==    by 0x113E19: fullStart (Startup.c:70)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 640 bytes in 4 blocks are possibly lost in loss record 98 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400BD59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400BD59: allocate_dtv (dl-tls.c:376)
+==1366==    by 0x400C487: _dl_allocate_tls (dl-tls.c:635)
+==1366==    by 0x51BE883: allocate_stack (allocatestack.c:423)
+==1366==    by 0x51BE883: pthread_create@@GLIBC_2.34 (pthread_create.c:650)
+==1366==    by 0x10E609: sendSpeakerOutputWithConditions (FirmwareCommunication.c:170)
+==1366==    by 0x110949: selectEntryInList (StateMachine.c:488)
+==1366==    by 0x10FD63: BootupFlow (StateMachine.c:72)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 662 bytes in 1 blocks are still reachable in loss record 99 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x40076A7: calloc (rtld-malloc.h:44)
+==1366==    by 0x40076A7: _dl_new_object (dl-object.c:92)
+==1366==    by 0x4004803: _dl_map_object_from_fd (dl-load.c:1063)
+==1366==    by 0x40058AF: _dl_map_object (dl-load.c:2272)
+==1366==    by 0x4007FDF: dl_open_worker_begin (dl-open.c:534)
+==1366==    by 0x5247983: _dl_catch_exception (dl-error-skeleton.c:208)
+==1366==    by 0x4007A51: dl_open_worker (dl-open.c:782)
+==1366==    by 0x5247983: _dl_catch_exception (dl-error-skeleton.c:208)
+==1366==    by 0x4007CC9: _dl_open (dl-open.c:884)
+==1366==    by 0x51BAF03: dlopen_doit (dlopen.c:56)
+==1366==    by 0x5247983: _dl_catch_exception (dl-error-skeleton.c:208)
+==1366==    by 0x5247A13: _dl_catch_error (dl-error-skeleton.c:227)
+==1366== 
+==1366== 960 bytes in 6 blocks are possibly lost in loss record 100 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x400BD59: calloc (rtld-malloc.h:44)
+==1366==    by 0x400BD59: allocate_dtv (dl-tls.c:376)
+==1366==    by 0x400C487: _dl_allocate_tls (dl-tls.c:635)
+==1366==    by 0x51BE883: allocate_stack (allocatestack.c:423)
+==1366==    by 0x51BE883: pthread_create@@GLIBC_2.34 (pthread_create.c:650)
+==1366==    by 0x10E609: sendSpeakerOutputWithConditions (FirmwareCommunication.c:170)
+==1366==    by 0x110949: selectEntryInList (StateMachine.c:488)
+==1366==    by 0x10FE6F: BootupFlow (StateMachine.c:100)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 2,048 bytes in 1 blocks are still reachable in loss record 101 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x10CAAD: growHashMap (HashMap.c:134)
+==1366==    by 0x10C76D: insertHashMap (HashMap.c:32)
+==1366==    by 0x10C777: insertHashMap (HashMap.c:33)
+==1366==    by 0x10E7CF: setupAudioHashMap (FirmwareCommunication.c:208)
+==1366==    by 0x10E129: firmwareCommunicationStartup (FirmwareCommunication.c:16)
+==1366==    by 0x113E07: fullStart (Startup.c:66)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 2,048 bytes in 1 blocks are still reachable in loss record 102 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x10CAC1: growHashMap (HashMap.c:135)
+==1366==    by 0x10C76D: insertHashMap (HashMap.c:32)
+==1366==    by 0x10C777: insertHashMap (HashMap.c:33)
+==1366==    by 0x10E7CF: setupAudioHashMap (FirmwareCommunication.c:208)
+==1366==    by 0x10E129: firmwareCommunicationStartup (FirmwareCommunication.c:16)
+==1366==    by 0x113E07: fullStart (Startup.c:66)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 2,264 bytes in 283 blocks are still reachable in loss record 103 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x48F3665: rig_register (in /usr/lib/arm-linux-gnueabihf/libhamlib.so.4.0.6)
+==1366== 
+==1366== 2,264 bytes in 283 blocks are definitely lost in loss record 104 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x48F3665: rig_register (in /usr/lib/arm-linux-gnueabihf/libhamlib.so.4.0.6)
+==1366== 
+==1366== 2,806 bytes in 81 blocks are still reachable in loss record 105 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10E77B: setupAudioHashMap (FirmwareCommunication.c:201)
+==1366==    by 0x10E129: firmwareCommunicationStartup (FirmwareCommunication.c:16)
+==1366==    by 0x113E07: fullStart (Startup.c:66)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 3,500 bytes in 35 blocks are indirectly lost in loss record 106 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10C259: textFileToArray (GeneralFunctions.c:25)
+==1366==    by 0x10EF13: loadConfigParams (ConfigParams.c:7)
+==1366==    by 0x113E19: fullStart (Startup.c:70)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 3,644 (144 direct, 3,500 indirect) bytes in 1 blocks are definitely lost in loss record 107 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10C23F: textFileToArray (GeneralFunctions.c:23)
+==1366==    by 0x10EF13: loadConfigParams (ConfigParams.c:7)
+==1366==    by 0x113E19: fullStart (Startup.c:70)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 4,021 bytes in 81 blocks are still reachable in loss record 108 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10E763: setupAudioHashMap (FirmwareCommunication.c:200)
+==1366==    by 0x10E129: firmwareCommunicationStartup (FirmwareCommunication.c:16)
+==1366==    by 0x113E07: fullStart (Startup.c:66)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 6,100 bytes in 61 blocks are still reachable in loss record 109 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10C259: textFileToArray (GeneralFunctions.c:25)
+==1366==    by 0x11067B: stateMachineStart (StateMachine.c:404)
+==1366==    by 0x113E0F: fullStart (Startup.c:68)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 8,000 bytes in 80 blocks are still reachable in loss record 110 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10C259: textFileToArray (GeneralFunctions.c:25)
+==1366==    by 0x10FDB7: BootupFlow (StateMachine.c:79)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 8,000 bytes in 80 blocks are still reachable in loss record 111 of 112
+==1366==    at 0x48646C0: malloc (vg_replace_malloc.c:381)
+==1366==    by 0x10C259: textFileToArray (GeneralFunctions.c:25)
+==1366==    by 0x10FE15: BootupFlow (StateMachine.c:86)
+==1366==    by 0x10FC6F: modeFlow (StateMachine.c:18)
+==1366==    by 0x1115E7: keyWatcher (KeyWatching.c:11)
+==1366==    by 0x113E3B: fullStart (Startup.c:77)
+==1366==    by 0x113F71: main (Startup.c:114)
+==1366== 
+==1366== 12,704 bytes in 1 blocks are still reachable in loss record 112 of 112
+==1366==    at 0x486A8E0: calloc (vg_replace_malloc.c:1328)
+==1366==    by 0x48CE55F: rig_init (in /usr/lib/arm-linux-gnueabihf/libhamlib.so.4.0.6)
+==1366== 
+==1366== LEAK SUMMARY:
+==1366==    definitely lost: 5,382 bytes in 349 blocks
+==1366==    indirectly lost: 3,500 bytes in 35 blocks
+==1366==      possibly lost: 4,480 bytes in 28 blocks
+==1366==    still reachable: 52,386 bytes in 739 blocks
+==1366==         suppressed: 0 bytes in 0 blocks
+==1366== 
+==1366== For lists of detected and suppressed errors, rerun with: -s
+==1366== ERROR SUMMARY: 46 errors from 46 contexts (suppressed: 0 from 0)

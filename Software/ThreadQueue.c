@@ -1,4 +1,4 @@
-#include "ThreadQueue.h"
+
 
 Thread_queue* createThreadQueue(){
         Thread_queue* new = malloc(sizeof(Thread_queue));

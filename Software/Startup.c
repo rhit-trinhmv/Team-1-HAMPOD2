@@ -57,6 +57,8 @@ void sigint_handler(int signum);
 
 void sigsegv_handler(int signum);
 
+volatile sig_atomic_t shutdown_requested = 0;
+
 pid_t p;
 void fullStart(){
     firmwareStartAudio();
@@ -79,14 +81,15 @@ void fullStart(){
     }
 }
 void sigint_handler(int signum) {
+    shutdown_requested = 1;
     printf("\033[0;31mTERMINATING FIRMWARE\n");
     printf("end the firmware with pid %i\n", (int) p);
     kill(p,SIGINT);
     printf("ending keywatcher\n");
     printf("ending firmware communication\n");
-    freeFirmwareComunication();
+//    freeFirmwareComunication();
     printf("ending state machine\n");
-    freeStateMachine();
+//    freeStateMachine();
     exit(0);
 }
 
@@ -98,7 +101,6 @@ void sigsegv_handler(int signum) {
 }
 
 int main(){
-    sendSpeakerOutput("Audio Working");
     if(signal(SIGSEGV, sigsegv_handler) == SIG_ERR) {
         perror("signal");
         exit(1);
@@ -110,6 +112,16 @@ int main(){
     }
     printf("Software kill handler setup\n");
     fullStart();
-    return -1;
+
+    while(!shutdown_requested) {
+        sleep(1);
+    }
+
+    printf("Main thread: shutting down...\n");
+
+    freeFirmwareComunication();
+    freeStateMachine();
+    //return -1;
+    return 0;
 }
 

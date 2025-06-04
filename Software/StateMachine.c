@@ -1,4 +1,3 @@
-#include "StateMachine.h"
 /* TODO list
 * 2) add a way to toggle if the letter keys are being used for standard input
 * 3) redue how loading up a mode works to properly use the toggles
@@ -76,7 +75,13 @@ BootUpStates BootupFlow(KeyPress* keyInput){
                 company = companiesList[index];
                 char fileNames[100];
                 sprintf(fileNames,"StartupFiles/%s_Model.txt",company);
+                printf("I'm here before making a model list\n");
                 modelList = textFileToArray(fileNames);
+                for(int i=0; i<5; i++) {
+                    printf("About to print %i",i);
+                    printf(modelList[i]);
+                    printf("\n");
+                }
                 sprintf(fileNames,"StartupFiles/%s_Hamlib.txt",company);
                 hamlibIDList = textFileToArray(fileNames);
                 bootUpState = chooseModel;
@@ -113,7 +118,7 @@ BootUpStates BootupFlow(KeyPress* keyInput){
                             
                             sprintf(outputText, "Linking radio make %s of model %s to port %i", company, modelList[modelIndex], convertCharToKeyValue(keyInput));
                             sendSpeakerOutput(outputText);
-                            loadUpRadioUsingData(company,(int) modelList[modelIndex], convertCharToKeyValue(keyInput), getModeByName("frequency mode"), atoi(hamlibIDList[modelIndex]));
+                            loadUpRadioUsingData(company,atoi(modelList[modelIndex]), convertCharToKeyValue(keyInput), getModeByName("frequency mode"), atoi(hamlibIDList[modelIndex]));
                             if(getCurrentRadioID() == 1){
                                 modeState = standard;
                                 sendSpeakerOutput("Starting normal operations");
@@ -479,6 +484,7 @@ int selectEntryInList(KeyPress* keyInput, char** list){
                     charSelectPage = charSelectPage + 1;
                 }
                 sprintf(shortName, "Switching to page %d",charSelectPage);
+                printf("DEBUG: This is the value of shortname: %s\n", shortName);
                 sendSpeakerOutputWithConditions(shortName,true,false,false);
                 break;
             case 'D':
@@ -519,6 +525,7 @@ int selectEntryInList(KeyPress* keyInput, char** list){
             case '7':
             case '8':
             case '9':
+                printf("I am here before finding page: page: %i\n",charSelectPage);
                 for(int i = charSelectPage*9; i < (charSelectPage) * 9 + convertCharToKeyValue(keyInput) - 1 ; i++){
                     if(strcmp(list[i], "END OF ARRAY") == 0){
                         sendSpeakerOutput("Out of range");
@@ -526,8 +533,10 @@ int selectEntryInList(KeyPress* keyInput, char** list){
                         break;
                     }
                 }
+                printf("past for loop\n");
                 sendSpeakerOutput(list[charSelectPage*9 + convertCharToKeyValue(keyInput) - 1]);
                 int returnValue = charSelectPage*9 + convertCharToKeyValue(keyInput) - 1;
+                printf("Return value: %i\n",returnValue);
                 charIndex = 0;
                 charSelectPage = 0;
                 listReadOut = false;
