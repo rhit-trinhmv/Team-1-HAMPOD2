@@ -1,35 +1,64 @@
-Name: test1
-Type: OnOff
-Default: 0
+Name: HotKey
+Type: OTHER
+Default: 1.000000
+MinValue: 0.000000
+MaxValue: 0.000000
+StepSize: 0.000000
+SelectionSize: 0
+SelectionSet: 
+
+Name: Frequency
+Type: NUMERIC
+Default: 49900.000000
+MinValue: 0.000000
+MaxValue: 0.000000
+StepSize: 0.000000
+SelectionSize: 0
+SelectionSet: 
 
 Name: Test2
-Type: Numeric
-Default: 2
-MinValue: 0
-MaxValue: 4
-StepSize: 1
+Type: NUMERIC
+Default: 2.000000
+MinValue: 0.000000
+MaxValue: 4.000000
+StepSize: 1.000000
+SelectionSize: 0
+SelectionSet: 
 
 Name: Test3
-Type: OnOffNumeric
-Default: 2
-MinValue: 0
-MaxValue: 4
-StepSize: 1
+Type: ONOFFNUMERIC
+Default: 2.000000
+MinValue: 0.000000
+MaxValue: 4.000000
+StepSize: 1.000000
+SelectionSize: 0
+SelectionSet: 
 
 Name: Test4
-Type: Selection
-Default: 0
+Type: UNKNOWN
+Default: 0.000000
+MinValue: 0.000000
+MaxValue: 0.000000
+StepSize: 0.000000
 SelectionSize: 3
-SelectionSet: Test, String, output
+SelectionSet: 8Óû€ÓûÀÓû
 
 Name: Test5
-Type: Other
-Default: 1
-
-Name: HotKey
-Type: Other
-Default: 1
+Type: OTHER
+Default: 1.000000
+MinValue: 0.000000
+MaxValue: 0.000000
+StepSize: 0.000000
+SelectionSize: 0
+SelectionSet: 
 
 Name: save
-Type: Other
-Default: 1
+Type: OTHER
+Default: 1.000000
+MinValue: 0.000000
+MaxValue: 0.000000
+StepSize: 0.000000
+SelectionSize: 0
+SelectionSet: 
+
+END OF ARRAY

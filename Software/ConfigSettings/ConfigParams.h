@@ -48,6 +48,8 @@
 void loadConfigParams();
 ConfigType stringToConfigType(char* str);
 char** convertTocharArray(char* str, int size);
+//for writing to Configs
+int writeConfigParamsToFile(const char *filename);
 //for the hashmap
 void freeConfigParam(void* param);
 int ConfigHashing(void* key);

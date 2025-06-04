@@ -1,3 +1,4 @@
+#include "ConfigLoad.h"
 bool loadUpFromSaveOLD(int saveFileNumber){
     //get the file to load
     char fileName[100];
@@ -79,7 +80,7 @@ bool loadUpFromSaveOLD(int saveFileNumber){
         int iPort = atoi(sPort);
         int iRigModel = atoi(sRigModel);
         PRINTFLEVEL1("Loading up radio id %i\n",iRigModel);
-        setRadios(loadUpRadioUsingData(sMake,iModel,iPort,getModeByName("Normal"),iRigModel),j);
+        loadUpRadioUsingData(sMake,iModel,iPort,getModeByName("Normal"),iRigModel);
         j++;
         i++;
     }

@@ -1,16 +1,16 @@
 //This is the file that is edited inorder to add new complex configs to the software
-
+#include "ConfigFunctions.h"
 void populateConfigFunctions(){
     ConfigParam* OtherFlagged;
     OtherFlagged = getConfigByName("save");
     OtherFlagged->configFuntion = SaveData;
     char* SaveDescription = "Press any number one through nine to save to that save file";
-    OtherFlagged->startingDescription = malloc(strlen(SaveDescription));
+    OtherFlagged->startingDescription = malloc(strlen(SaveDescription)+1);
     strcpy(OtherFlagged->startingDescription,SaveDescription);
     OtherFlagged = getConfigByName("HotKey");
     OtherFlagged->configFuntion = setHotkeys;
     char* HotKeyDescription = "Press any number one through nine to select mode to be linked";
-    OtherFlagged->startingDescription = malloc(strlen(HotKeyDescription));
+    OtherFlagged->startingDescription = malloc(strlen(HotKeyDescription)+1);
     strcpy(OtherFlagged->startingDescription,HotKeyDescription);
 }
 

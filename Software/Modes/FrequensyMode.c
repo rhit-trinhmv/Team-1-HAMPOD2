@@ -15,6 +15,7 @@ void* frequencyCommandRelay(KeyPress* keyInput, RIG* my_rig){
         case '7':
         case '8':
         case '9':
+            printf("I made it here in FrequencyCommandRelay\n");
             if(hasDecimal){
                 decimalPlace ++;
             }

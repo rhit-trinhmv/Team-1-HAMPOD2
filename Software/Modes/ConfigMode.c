@@ -37,6 +37,13 @@ void configNavigation(KeyPress* keyInput){
         {
         case ONOFF:
         case NUMERIC:
+            if(strcmp(configNames[currentConfig], "Frequency")==0) {
+                printf("I made it to the frequencyConfig\n");
+                getConfigByName(configNames[currentConfig])->defaultValue -= 100;
+                char freqString[10];
+                sprintf(freqString, "%d\n", getConfigByName(configNames[currentConfig])->defaultValue);
+            }
+
         case ONOFFNUMERIC:
             output2 = incrementConfig(configNames[currentConfig], false);
             PRINTFLEVEL1("SOFTWARE: Set config %s to %s\n", configNames[currentConfig], output2);
@@ -85,8 +92,15 @@ void configNavigation(KeyPress* keyInput){
         break;
     case '9':
         PRINTFLEVEL1("SOFTWARE: Saving changes to configs\n");
+        if (writeConfigParamsToFile("ConfigSettings/Configs.txt") == 0) {
+            sendSpeakerOutput("Configureations saved successfully");
+        } else {
+            sendSpeakerOutput("Error saving configurations");
+        }
+
         free(oldValues);
         oldValues = getListOfCurrentValues();
+
         break;
 
     case '7':

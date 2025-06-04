@@ -1,3 +1,4 @@
+#include "HamlibGetFunctions.h"
 char* get_current_transceive_mode(void* input) {
     RIG* rig = ((void**)input)[0];
 

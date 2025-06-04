@@ -1,3 +1,4 @@
+#include "ConfigParams.h"
 HashMap* configMapping;
 
 void loadConfigParams(){
@@ -59,6 +60,60 @@ void loadConfigParams(){
     }
 }
 
+const char* configTypeToString(int configType) {
+
+    switch(configType) {
+        case ONOFF:     return "ONOFF";
+        case NUMERIC:   return "NUMERIC";
+        case ONOFFNUMERIC: return "ONOFFNUMERIC";
+        case NUMPAD:    return "NUMPAD";
+        case OTHER:     return "OTHER";
+        default:        return "UNKNOWN";
+    }
+}
+
+int writeConfigParamsToFile(const char *filename) {
+    FILE *fp = fopen(filename, "w");
+    if (fp == NULL) {
+        perror("Error opening file for writing");
+        return;
+    }
+
+    void **entries = getAllEntriesHashMap(configMapping);
+    if (entries == NULL) {
+        fprintf(stderr, "Failed to retrieve config entries\n");
+        fclose(fp);
+        return 1;
+    }
+    int total = configMapping->quantity; 
+
+    for (int i = 0; i < total; i++) {
+        ConfigParam *cp = (ConfigParam*) entries[i];
+        if(!cp) continue;
+
+        fprintf(fp, "Name: %s\n", cp->name);
+        fprintf(fp, "Type: %s\n", configTypeToString(cp->configType));
+        fprintf(fp, "Default: %f\n", cp->defaultValue);
+        fprintf(fp, "MinValue: %f\n", cp->minValue);
+        fprintf(fp, "MaxValue: %f\n", cp->maxValue);
+        fprintf(fp, "StepSize: %f\n", cp->stepSize);
+        fprintf(fp, "SelectionSize: %d\n", cp->selectionSize);
+        if (cp->selectionSet)
+            fprintf(fp, "SelectionSet: %s\n", cp->selectionSet);
+        else
+            fprintf(fp, "SelectionSet: \n");
+
+        fprintf(fp, "\n");
+    }
+
+    
+        fprintf(fp, "END OF ARRAY\n");
+        fclose(fp);
+        free(entries);
+        return 0;
+}
+
+
 
 ConfigType stringToConfigType(char* str){
     if(strcmp(str,"OnOff") == 0){
@@ -88,7 +143,7 @@ char** convertTocharArray(char* str, int size){
             listOfEntries[i] = customSubString(currentStr, 0,index-1);
             currentStr = targetPosition+1;
         }else{
-            listOfEntries[i] = currentStr;
+            listOfEntries[i] = strdup(currentStr);
         }
     }
     return listOfEntries;

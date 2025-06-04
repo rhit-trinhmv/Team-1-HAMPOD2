@@ -41,7 +41,6 @@ do{}while(0)
 #include <string.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include <stdbool.h>
 #include <math.h>
 #include <hamlib/rig.h>
 #include <hamlib/riglist.h>
@@ -53,5 +52,9 @@ do{}while(0)
 
 void* frequencyCommandRelay(KeyPress* keyInput, RIG* my_rig);
 Mode* FrequensyLoad();
+
+#ifndef SHAREDLIB
+#include "FrequensyMode.c"
+#endif
 
 #endif
